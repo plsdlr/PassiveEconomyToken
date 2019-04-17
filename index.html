@@ -1,0 +1,81 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>testsite</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+
+</head>
+
+<body>
+
+  <b>click</b>
+  <div>click<b>click</b>click</div>
+  <b>click</b></br>
+  <b>click</b></br>
+  <b>click</b></br>
+  <b>click</b></br>
+
+
+<button type="button"
+onclick="document.getElementById('demo').innerHTML = get_user_stats()">
+Get User Stats.</button>
+
+<p id="demo"></p>
+
+
+  </br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+  <b>click</b></br>
+  <b>click</b>
+
+
+  <script>
+
+  var _now = new Date().getTime();
+  var _actions = new Array();
+  var _scroll_counter = 0;
+
+  document.onclick = clickListener;
+
+  window.onscroll = function (e) {
+  _scroll_counter = _scroll_counter + 1;
+  console.log(_scroll_counter)
+  }
+
+  function clickListener(e)
+  {
+      var clickedElement=(window.event)
+                          ? window.event.srcElement
+                          : e.target,
+          tags=document.getElementsByTagName(clickedElement.tagName);
+      console.log("get input")
+      for(var i=0;i<tags.length;++i)
+      {
+        if(tags[i]==clickedElement)
+        {
+          _actions.push({tag:clickedElement.tagName,index:i});
+
+        }
+      }
+      //console.log(_actions)
+      console.log(timer())
+  }
+
+
+  function timer(){
+     var distance = new Date().getTime() - _now;
+     return distance
+  }
+
+  function get_user_stats() {
+    var time_spend = timer()
+    var _newstring = _actions.length.toString().concat("__",time_spend.toString(),"__", _scroll_counter.toString())
+    console.debug(_newstring)
+    return _newstring
+  }
+
+  </script>
+</body>
+</html>
